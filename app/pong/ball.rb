@@ -13,7 +13,7 @@ class Ball
   def reset
     @position = @start_position.map { |n| n - (BALL_DIAMETER / 2) }
     @speed = BALL_START_SPEED
-    @angle = -80
+    @angle = -45
   end
 
   def tick
@@ -23,6 +23,7 @@ class Ball
     @position.y += @speed * Math.sin(radians)
 
     handle_wall_collision
+    handle_out_of_bounds
   end
 
   # Bounce the ball off the top/bottom walls
@@ -31,5 +32,16 @@ class Ball
       @angle *= -1
       @position.y = @position.y.clamp(0, @screen_top)
     end
+  end
+
+  def handle_out_of_bounds
+    reset if out_of_bounds?
+  end
+
+  # Returns nil, :left, or :right depending on if the ball has
+  # gone off-screen on the x-axis
+  def out_of_bounds?
+    return :left if @position.x <= 0 - (BALL_DIAMETER * 2)
+    return :right if @position.x >= @screen_width + BALL_DIAMETER
   end
 end
