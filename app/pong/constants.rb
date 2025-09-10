@@ -1,0 +1,1 @@
+BALL_DIAMETER = 16
