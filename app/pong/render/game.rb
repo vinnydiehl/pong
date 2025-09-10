@@ -12,6 +12,14 @@ class PongGame
       w: @screen_width, h: @screen_height,
       r: 63, g: 63, b: 63,
     }
+
+    # Center line
+    @primitives << {
+      primitive_marker: :solid,
+      x: (@screen_width / 2) - 1, y: 0,
+      w: 2, h: @screen_height,
+      r: 120, g: 120, b: 120,
+    }
   end
 
   def render_paddles
