@@ -10,9 +10,9 @@ class Ball
     reset
   end
 
-  def reset
+  def reset(ball_direction = :right)
     @position = @start_position.map { |n| n - (BALL_DIAMETER / 2) }
-    @speed = BALL_START_SPEED
+    @speed = BALL_START_SPEED * (ball_direction == :left ? -1 : 1)
     @angle = -45
   end
 
@@ -55,7 +55,7 @@ class Ball
 
   def handle_out_of_bounds
     oob = out_of_bounds?
-    reset if oob
+    reset(@speed > 0 ? :left : :right) if oob
     oob
   end
 
