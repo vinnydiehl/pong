@@ -8,6 +8,6 @@ class PongGame
 
   def game_tick
     handle_keyboard_inputs
-    @ball.tick
+    @ball.tick(@paddles)
   end
 end

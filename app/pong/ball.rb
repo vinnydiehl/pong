@@ -16,14 +16,32 @@ class Ball
     @angle = -45
   end
 
-  def tick
+  def tick(paddles)
     # Move the ball
     radians = @angle * Math::PI / 180.0
     @position.x += @speed * Math.cos(radians)
     @position.y += @speed * Math.sin(radians) * (@speed < 0 ? -1 : 1)
 
+    handle_paddle_collision(paddles)
     handle_wall_collision
     handle_out_of_bounds
+  end
+
+  # Bounce the ball off the paddles
+  def handle_paddle_collision(paddles)
+    paddles.values.each do |paddle|
+      if (c = paddle.collision(@position.x, @position.y))
+        # Speed up ball with each hit
+        @speed *= -1.1
+        # Reset to paddle edge so it doesn't get stuck
+        @position.x = c.x
+        # If the ball hits a paddle dead center, it bounces off with
+        # angle 0. The angle gets more extreme as it approaches
+        # the edge. Hitting the top half of the paddle will angle
+        # it upwards, the lower half will angle it downwards.
+        @angle = MAX_DEFLECTION_ANGLE * c.y
+      end
+    end
   end
 
   # Bounce the ball off the top/bottom walls
