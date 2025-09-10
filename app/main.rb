@@ -1,6 +1,6 @@
 SCENES = %w[game].freeze
 
-%w[constants ball pong].each { |f| require "app/pong/#{f}.rb" }
+%w[constants ball paddle pong].each { |f| require "app/pong/#{f}.rb" }
 
 %w[scenes render].each { |dir| SCENES.each { |f| require "app/pong/#{dir}/#{f}.rb" } }
 

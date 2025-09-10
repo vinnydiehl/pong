@@ -1,6 +1,7 @@
 class PongGame
   def render_game
     render_background
+    render_paddles
     render_ball
   end
 
@@ -11,6 +12,16 @@ class PongGame
       w: @screen_width, h: @screen_height,
       r: 63, g: 63, b: 63,
     }
+  end
+
+  def render_paddles
+    @paddles.each do |paddle|
+      @primitives << {
+        primitive_marker: :solid,
+        **paddle.rect,
+        r: 255, g: 255, b: 255,
+      }
+    end
   end
 
   def render_ball
