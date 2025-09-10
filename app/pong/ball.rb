@@ -20,7 +20,7 @@ class Ball
     # Move the ball
     radians = @angle * Math::PI / 180.0
     @position.x += @speed * Math.cos(radians)
-    @position.y += @speed * Math.sin(radians)
+    @position.y += @speed * Math.sin(radians) * (@speed < 0 ? -1 : 1)
 
     handle_wall_collision
     handle_out_of_bounds
