@@ -4,7 +4,7 @@ class Ball
   def initialize(screen_width, screen_height)
     @screen_width, @screen_height = screen_width, screen_height
     # Top Y value for the ball
-    @screen_top = @screen_height - BALL_DIAMETER
+    @screen_top = @screen_height - BALL_DIAMETER - 1
 
     @start_position = [screen_width / 2, screen_height / 2]
     reset

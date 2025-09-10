@@ -15,7 +15,7 @@ class PongGame
   end
 
   def render_paddles
-    @paddles.each do |paddle|
+    @paddles.values.each do |paddle|
       @primitives << {
         primitive_marker: :solid,
         **paddle.rect,
