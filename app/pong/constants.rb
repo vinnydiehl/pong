@@ -1,3 +1,6 @@
+# Padding from center
+SCORE_PADDING = 20
+
 BALL_DIAMETER = 16
 BALL_START_SPEED = 10
 

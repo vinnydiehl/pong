@@ -1,6 +1,7 @@
 class PongGame
   def render_game
     render_background
+    render_score
     render_paddles
     render_ball
   end
@@ -20,6 +21,20 @@ class PongGame
       w: 2, h: @screen_height,
       r: 120, g: 120, b: 120,
     }
+  end
+
+  def render_score
+    [:left, :right].each do |side|
+      @primitives << {
+        x: @screen_width / 2 + (SCORE_PADDING * (side == :left ? -1 : 1)),
+        y: @screen_height,
+        text: @score[side],
+        size_enum: 20,
+        alignment_enum: side == :left ? 2 : 0,
+        vertical_alignment_enum: 2,
+        r: 255, g: 255, b: 255,
+      }
+    end
   end
 
   def render_paddles

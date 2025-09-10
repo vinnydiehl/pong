@@ -24,6 +24,7 @@ class Ball
 
     handle_paddle_collision(paddles)
     handle_wall_collision
+    # Returns out_of_bounds to the game tick
     handle_out_of_bounds
   end
 
@@ -53,7 +54,9 @@ class Ball
   end
 
   def handle_out_of_bounds
-    reset if out_of_bounds?
+    oob = out_of_bounds?
+    reset if oob
+    oob
   end
 
   # Returns nil, :left, or :right depending on if the ball has
