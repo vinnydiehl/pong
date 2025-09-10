@@ -13,7 +13,8 @@ class Ball
   def reset(ball_direction = :right)
     @position = @start_position.map { |n| n - (BALL_DIAMETER / 2) }
     @speed = BALL_START_SPEED * (ball_direction == :left ? -1 : 1)
-    @angle = -45
+    # Start ball at a random angle between -45 and 45
+    @angle = rand(91) - 45
   end
 
   def tick(paddles)
