@@ -1,4 +1,6 @@
 class Paddle
+  attr_reader :inside_edge
+
   def initialize(side, screen_width, screen_height)
     @side = side
     @screen_height = screen_height

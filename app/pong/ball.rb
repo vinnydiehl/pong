@@ -1,5 +1,5 @@
 class Ball
-  attr_reader :position
+  attr_reader :angle, :position, :speed
 
   def initialize(screen_width, screen_height)
     @screen_width, @screen_height = screen_width, screen_height
